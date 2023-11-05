@@ -13,7 +13,17 @@ public class VehiclesInventory {
 		private int year;
 		private int mileage;
 		
-		// constructor 
+		// default constructor 
+		public Vehicle() {
+			make = "not assigned";
+			model = "not assigned";
+			color = "not assigned";
+			year = 0;
+			mileage = 0;
+		}
+		
+		
+		// parameterized constructor 
 		public Vehicle(String make, String model, String color, int year, int mileage) {
 			this.make = make;
 			this.model = model;
@@ -56,9 +66,24 @@ public class VehiclesInventory {
 	// private fields for VehiclesInventory class 
 	private ArrayList<Vehicle> vehiclesList;
 	
-	// constructor
+	// default constructor
 	public VehiclesInventory() {
 		vehiclesList = new ArrayList<Vehicle>();
+	}
+	
+	// parameterized constructor 
+	public VehiclesInventory(ArrayList<Vehicle> carsStorage) {
+		vehiclesList = carsStorage;
+	}
+	
+	//getters
+	public ArrayList<Vehicle> getVehiclesList() {
+		return vehiclesList;
+	}
+	
+	// setters
+	public void setVehiclesList(ArrayList<Vehicle> carsStorage) {
+		vehiclesList = carsStorage;
 	}
 	
 	// helper method to find index of vehicle in vehiclesList, return -1 if vehicle not in list
@@ -106,7 +131,21 @@ public class VehiclesInventory {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		VehiclesInventory carStorage = new VehiclesInventory();
+		System.out.println(carStorage.addVehicle("Toyota", "Rav4", "White", 0, 0));
+		System.out.println(carStorage.addVehicle("Honda", "Civic", "Red", 0, 0));
+		for (Vehicle vehicle: carStorage.getVehiclesList()) {
+			System.out.println(vehicle.toString());
+		}
+		System.out.println(carStorage.removeVehicle("Toyota", "Rav4", "White", 0, 0));
+		for (Vehicle vehicle: carStorage.getVehiclesList()) {
+			System.out.println(vehicle.toString());
+		}
+		System.out.println(carStorage.updateVehicle("Honda", "Civic", "Red", 0, 0, "Toyota", "Camry", "Blue", 0, 0));
+		for (Vehicle vehicle: carStorage.getVehiclesList()) {
+			System.out.println(vehicle.toString());
+		}
+		System.out.println(carStorage.removeVehicle("Toyota", "Rav4", "White", 0, 0));
 
 	}
 
